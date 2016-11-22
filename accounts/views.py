@@ -11,6 +11,7 @@ from django_cas_ng.utils import get_service_url
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
 from django.views.generic import View
+from django.http import HttpResponseRedirect
 
 
 @api_view(['GET'])
@@ -40,9 +41,12 @@ class LoginView(View):
         if self.ticket:
             user = authenticate(self.ticket, self.service, request)
             if not user:
-                return redirect('api_login')
+                # should 302 to seerver/login
+                return HttpResponseRedirect('api_login')
             login(request, user)
-            return redirect('index')
+            return HttpResponseRedirect('index')
+        else:
+            return HttpResponseRedirect('api_login')
 
     def post(self, request, *args, **kwargs):
         username, password = request.POST.get('username'), request.POST.get('password')
