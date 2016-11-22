@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'cas_client.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cas_client',
+        'NAME': 'cas_client1',
         'USER': 'root',
         'PASSWORD': '1234',
         'HOST': '127.0.0.1',
